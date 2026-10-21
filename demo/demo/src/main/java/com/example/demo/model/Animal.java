@@ -1,4 +1,4 @@
-package model;
+package com.example.demo.model;
 
 import jakarta.validation.constraints.*;
 
@@ -61,15 +61,7 @@ public class Animal {
     }
 
 
-    @Override
-    public String toString() {
-        return "Animal{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", vidaMedia=" + vidaMedia +
-                ", extinto=" + extinto +
-                '}';
-    }
+
 
 
 

@@ -1,5 +1,5 @@
-package service;
-import model.Animal;
+package com.example.demo.service;
+import com.example.demo.model.Animal;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,17 +24,11 @@ public class AnimalService {
         contador++;
     }
 
-    public void crearAnimal(Animal animal){
 
-        animal.setId(contador);
-        animales.add(animal);
-        contador++;
-
-    }
 
     public List<Animal> listarAnimales() {
 
-        return animales;
+            return animales;
     }
 
     public Animal buscarPorId(int id) {
@@ -43,13 +37,13 @@ public class AnimalService {
 
             Animal animal = animales.get(i);
 
-            if (animal.getId() == id ){
+                if (animal.getId() == id ){
 
-                return animal;
+                    return animal;
+
+                }
 
             }
-
-        }
 
         return null;
         
@@ -57,7 +51,7 @@ public class AnimalService {
 
 
         //Aqui desconocemos el id del animal por eso usamos .getId()
-        public Animal editAnimal(Animal animal) {
+    public Animal editAnimal(Animal animal) {
 
             Animal animalEncontrado = buscarPorId(animal.getId());
 
@@ -73,14 +67,14 @@ public class AnimalService {
 
         //Aqui usamos el id directamente porque ya conocemos el id del animal que queremos borrar
     public boolean deleteAnimal(int id) {
-        Animal animalEncontrado = buscarPorId(id);
+            Animal animalEncontrado = buscarPorId(id);
 
-        if (animalEncontrado != null) {
-            return animales.remove(animalEncontrado);
+            if (animalEncontrado != null) {
+                return animales.remove(animalEncontrado);
+            }
+
+            return false;
         }
-
-        return false;
-    }
 
 
     }
