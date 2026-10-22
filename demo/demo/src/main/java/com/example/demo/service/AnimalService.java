@@ -35,13 +35,11 @@ public class AnimalService {
 
         for (int i = 0; i < animales.size(); i++) {
 
-            Animal animal = animales.get(i);
-
-                if (animal.getId() == id ){
-
+            for (Animal animal : animales) {
+                if (animal.getId() == id) {
                     return animal;
-
                 }
+            }
 
             }
 
