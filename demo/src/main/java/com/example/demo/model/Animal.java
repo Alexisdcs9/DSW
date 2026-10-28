@@ -11,13 +11,13 @@ public class Animal {
     @Size(min = 3, max = 15 , message = "El nombre tiene que tener entre 3 y 15 caracteres")
     private String nombre;
 
-    @PositiveOrZero
-    @Min(0)
-    @Max(600)
+
+    @Min(value = 0, message = "No se admiten valores negativos")
+    @Max(value = 600, message = "No puedes exceder el limite de 600")
     private int vidaMedia;
 
-    @NotBlank(message = "Debes indicar Si o No")
-    private Boolean extinto;
+
+    private boolean extinto;
 
     public Animal() {
 
