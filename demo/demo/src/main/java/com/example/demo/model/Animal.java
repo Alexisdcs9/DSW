@@ -19,7 +19,9 @@ public class Animal {
     @NotBlank(message = "Debes indicar Si o No")
     private Boolean extinto;
 
+    public Animal() {
 
+    }
 
     public Animal(int id, String nombre, int vidaMedia, boolean extinto) {
         this.id = id;

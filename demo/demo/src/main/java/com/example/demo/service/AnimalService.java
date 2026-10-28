@@ -1,4 +1,7 @@
+
+
 package com.example.demo.service;
+
 import com.example.demo.model.Animal;
 import org.springframework.stereotype.Service;
 
@@ -13,67 +16,54 @@ public class AnimalService {
     private int contador = 1;
 
     public AnimalService() {
-        crearAnimal("Perro", 15, false);
-        crearAnimal("Mosca", 5, true);
-        crearAnimal("Ballena", 30, false);
+        crearAnimal(new Animal(0, "Perro", 15, false));
+        crearAnimal(new Animal(0, "Mosca", 5, true));
+        crearAnimal(new Animal(0, "Ballena", 30, false));
     }
 
-    public void crearAnimal(String nombre, Integer vidaMedia, Boolean extinto) {
-        Animal animal = new Animal(contador,nombre,vidaMedia,extinto);
+    // Recibe un animal sin id (viene del formulario), le asigna el id del contador y lo devuelve
+    public Animal crearAnimal(Animal animal) {
+        animal.setId(contador);
         animales.add(animal);
         contador++;
+        return animal;
     }
 
-
-
     public List<Animal> listarAnimales() {
-
-            return animales;
+        return animales;
     }
 
     public Animal buscarPorId(int id) {
-
-        for (int i = 0; i < animales.size(); i++) {
-
-            for (Animal animal : animales) {
-                if (animal.getId() == id) {
-                    return animal;
-                }
+        for (Animal animal : animales) {
+            if (animal.getId() == id) {
+                return animal;
             }
-
-            }
-
+        }
         return null;
-        
     }
 
-
-        //Aqui desconocemos el id del animal por eso usamos .getId()
+    // Aqui desconocemos el id del animal por eso usamos .getId()
     public Animal editAnimal(Animal animal) {
+        Animal animalEncontrado = buscarPorId(animal.getId());
 
-            Animal animalEncontrado = buscarPorId(animal.getId());
-
-            if (animalEncontrado != null) {
-                animalEncontrado.setNombre(animal.getNombre());
-                animalEncontrado.setVidaMedia(animal.getVidaMedia());
-                animalEncontrado.setExtinto(animal.isExtinto());
-            }
-
-            return animalEncontrado;
+        if (animalEncontrado != null) {
+            animalEncontrado.setNombre(animal.getNombre());
+            animalEncontrado.setVidaMedia(animal.getVidaMedia());
+            animalEncontrado.setExtinto(animal.isExtinto());
         }
 
-
-        //Aqui usamos el id directamente porque ya conocemos el id del animal que queremos borrar
-    public boolean deleteAnimal(int id) {
-            Animal animalEncontrado = buscarPorId(id);
-
-            if (animalEncontrado != null) {
-                return animales.remove(animalEncontrado);
-            }
-
-            return false;
-        }
-
-
+        return animalEncontrado;
     }
 
+    // Aqui usamos el id directamente porque ya conocemos el id del animal que queremos borrar
+    public boolean deleteAnimal(int id) {
+        Animal animalEncontrado = buscarPorId(id);
+
+        if (animalEncontrado != null) {
+            return animales.remove(animalEncontrado);
+        }
+
+        return false;
+    }
+
+}
